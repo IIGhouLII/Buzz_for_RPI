@@ -81,21 +81,30 @@ int main(int argc, char* argv[]){
 			fprintf(fp, "Event: Time %u, ControllerID: %u, Button: %u, State: %u \n", Buzz.Time, Buzz.ControllerID, Buzz.ButtonID, Buzz.State);
 			fflush(fp);
 
+			if (Buzz.ControllerID==0){
+				if ((Buzz.ButtonID==0)&&(Buzz.State==1)){
+					system("RPIConnect -mocp play_pause");
+				}else if ((Buzz.ButtonID==1)&&(Buzz.State==1)){
+					system("RPIConnect -mocp next");
+				}
+				else if ((Buzz.ButtonID==2)&&(Buzz.State==1)){
+					system("RPIConnect -mocp prev");
+				}
+				else if ((Buzz.ButtonID==3)&&(Buzz.State==1)){
+					system("RPIConnect -vol -");
+				}
+				else if ((Buzz.ButtonID==4)&&(Buzz.State==1)){
+					system("RPIConnect -vol +");
+				}
+			}else if (Buzz.ControllerID==1){
+				if ((Buzz.ButtonID==0)&&(Buzz.State==1)){
+					system("RPIConnect -talk ip");
+				}
+				else if ((Buzz.ButtonID==1)&&(Buzz.State==1)){
+					system("RPIConnect -talk time");
+				}
+			}
 
-			if ((Buzz.ButtonID==0)&&(Buzz.State==1)){
-				system("RPIConnect -mocp play_pause");
-			}else if ((Buzz.ButtonID==1)&&(Buzz.State==1)){
-				system("RPIConnect -mocp next");
-			}
-			else if ((Buzz.ButtonID==2)&&(Buzz.State==1)){
-				system("RPIConnect -mocp prev");
-			}
-			else if ((Buzz.ButtonID==3)&&(Buzz.State==1)){
-				system("RPIConnect -vol +");
-			}
-			else if ((Buzz.ButtonID==4)&&(Buzz.State==1)){
-				system("RPIConnect -vol -");
-			}
 			// For later Speech recognition applications (requires pulseuaudio, bluez and bluetooth headset)
 			// if ((Buzz.ButtonID==0)&&(Buzz.State==1)){
 			// 	system("/usr/bin/paplay -r /home/raspberry/.tmp/test.wav &");
