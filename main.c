@@ -83,18 +83,18 @@ int main(int argc, char* argv[]){
 
 			if (Buzz.ControllerID==0){
 				if ((Buzz.ButtonID==0)&&(Buzz.State==1)){
-					system("RPIConnect -mocp play_pause");
+					system("RPIConnect -mp play_pause");
 				}else if ((Buzz.ButtonID==1)&&(Buzz.State==1)){
-					system("RPIConnect -mocp next");
+					system("RPIConnect -mp next");
 				}
 				else if ((Buzz.ButtonID==2)&&(Buzz.State==1)){
-					system("RPIConnect -mocp prev");
+					system("RPIConnect -mp prev");
 				}
 				else if ((Buzz.ButtonID==3)&&(Buzz.State==1)){
-					system("RPIConnect -vol -");
+					system("RPIConnect -mp -");
 				}
 				else if ((Buzz.ButtonID==4)&&(Buzz.State==1)){
-					system("RPIConnect -vol +");
+					system("RPIConnect -mp +");
 				}
 			}else if (Buzz.ControllerID==1){
 				if ((Buzz.ButtonID==0)&&(Buzz.State==1)){
